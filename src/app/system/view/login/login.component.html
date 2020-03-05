@@ -1,0 +1,48 @@
+
+
+<body class="login-body">
+    <div id="login-wrapper">
+        <img src="./assets/layout/images/login-logo.png">
+
+
+        <div class="alert" role="alert" *ngIf="message">
+            <strong style="color: red"> Email ou senha inválida</strong>                                 
+        </div>    
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1" *ngIf="aguardar">                                  
+                <p-progressSpinner></p-progressSpinner>  
+        </div>
+
+
+        <div id="login-container">
+            <span class="title">Omega</span>
+
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12">
+                    <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Email" 
+                    name="email"  [(ngModel)]="usuario.email"
+                />
+                </div>
+                <div class="ui-g-12">
+                    <input type="password" autocomplete="off" class="ui-inputtext ui-corner-all ui-state-default ui-widget" placeholder="Senha" 
+                           name="password"  [(ngModel)]="usuario.password"
+                    />
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <span class="remember-me">Remember Me</span>
+                    <input type="checkbox">
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <a href="#">Forgot Password</a>
+                </div>
+                <div class="ui-g-12">
+                    <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" (click)="login()">
+                        <span class="ui-button-icon-left ui-c fa fa-fw ui-icon-person"></span>
+                        <span class="ui-button-text ui-c">Sign In</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="login-footer">PrimeNG Omega</div>
+    </div>
+</body>
