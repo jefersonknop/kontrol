@@ -1,5 +1,3 @@
-
-
 import { Directive, ElementRef, AfterContentInit, Input, OnInit } from '@angular/core';
 
 
@@ -20,8 +18,7 @@ export class AutofocusDirective implements OnInit{
   }
 
   public setFocus(){
-    setTimeout(()=>{    
-
+    setTimeout(()=>{
       this.el.nativeElement.focus();
     },50);
   }

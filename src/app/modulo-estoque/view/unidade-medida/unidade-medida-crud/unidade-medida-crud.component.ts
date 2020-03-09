@@ -1,18 +1,15 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Unidade_medida } from 'src/app/modulo-estoque/domain/unidade-medida';
 import { Unidade_medidaService } from 'src/app/modulo-estoque/service/unidade-medida-service';
 import { Response } from 'src/app/system/domain/response';
-
+import { ThirdPartyDraggable } from '@fullcalendar/interaction';
 
 @Component({
   selector: 'app-unidade-medida-crud',
   templateUrl: './unidade-medida-crud.component.html',
   styleUrls: ['./unidade-medida-crud.component.css']
 })
-export class UnidadeMedidaCrudComponent implements OnInit {  
-  //@ViewChild('input1', { static: true }) focus1: ElementRef;
- 
-
+export class UnidadeMedidaCrudComponent implements OnInit {
   displayDialog: boolean;
   unidade_medida: Unidade_medida; 
   selectedUnidade_medida: Unidade_medida;
@@ -20,7 +17,7 @@ export class UnidadeMedidaCrudComponent implements OnInit {
   unidade_medidas: Unidade_medida[];
   cols: any[];
 
-  
+
   constructor(private unidade_medidaService: Unidade_medidaService) { }
 
   ngOnInit() {
@@ -29,16 +26,14 @@ export class UnidadeMedidaCrudComponent implements OnInit {
       { field: 'descricao', header: 'Unidade de medida' },
       { field: 'abreviatura', header: 'Abreviatura' }
     ];
- 
   }
 
   showDialogToAdd() {
-    this.displayDialog = false;
     this.newUnidade_medida = true;  
     this.unidade_medida = new Unidade_medida();
    
     this.displayDialog = true;
-    
+
   
 
 
@@ -70,6 +65,9 @@ export class UnidadeMedidaCrudComponent implements OnInit {
 
 
 
+        
+
+
     }
     else{
       unidade_medidas[this.unidade_medidas.indexOf(this.selectedUnidade_medida)] = this.unidade_medida;
@@ -91,8 +89,6 @@ export class UnidadeMedidaCrudComponent implements OnInit {
        
        
     }
-    
-
     this.unidade_medidas = unidade_medidas;
     this.unidade_medida = null;
     this.displayDialog = false;
@@ -106,7 +102,7 @@ export class UnidadeMedidaCrudComponent implements OnInit {
       this.unidade_medidaService.delete(this.selectedUnidade_medida.id).subscribe(response => {
             let res:Response = <Response>response;
             if(res.codigo == 1){
-              //alert(res.mensagem);
+              alert(res.mensagem);
               this.unidade_medidas.splice(index,1);
             }
             else{             

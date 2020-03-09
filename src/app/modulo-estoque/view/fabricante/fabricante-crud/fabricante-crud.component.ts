@@ -113,9 +113,9 @@ export class FabricanteCrudComponent implements OnInit {
     this.displayDialog = false;
   }
 
- // cancel() {
-   // this.displayDialog = false;
- // }
+  cancel() {
+    this.displayDialog = false;
+  }
 
   onRowSelect(event) {
     this.newFabricante = false;

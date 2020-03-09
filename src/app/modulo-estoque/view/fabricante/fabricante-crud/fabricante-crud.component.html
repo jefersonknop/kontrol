@@ -4,13 +4,12 @@
 
 <div class="ui-g">
 
-    
-
 
 <!----------------------------------------TABELA---------------------------------------->
   <div class="ui-g-12">
       <div class="card">    
-          <h1>Fabricantes</h1>                 
+          <h1>Fabricantes</h1>
+      
                 
                     <p-table #dt [columns]="cols" [value]="fabricantes" selectionMode="single" [(selection)]="selectedFabricante" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
                         <ng-template pTemplate="caption">
@@ -43,27 +42,56 @@
                     </p-table>
 
 <!----------------------------------------FIM TABELA---------------------------------------->
-
+                 
                     <p-dialog header="Fabricante" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" >
-                        <div class="ui-g ui-fluid" *ngIf="fabricante">
-                            <div class="ui-g-12">
-                                <div class="ui-g-4">
-                                    <label for="nome">Nome do fabricante</label>
-                                </div>
-                                <div class="ui-g-8">
-                                    <input pInputText id="nome" [(ngModel)]="fabricante.nome" />
-                                </div>
-                            </div>
-                            <div class="ui-g-12">
-                                <div class="ui-g-4">
-                                    <label for="cpf_cnpj">CPF/CNPJ</label>
-                                </div>
-                                <div class="ui-g-8">
-                                    <input pInputText id="cpf_cnpj" [(ngModel)]="fabricante.cpf_cnpj" />
-                                </div>
-                            </div>       
+                       
+                          
+                        <p-tabView>               
+                            <div class="ui-g ui-fluid" *ngIf="fabricante">                 
+                                <p-tabPanel header="Dados Cadastrais" leftIcon="pi pi-calendar">
+                                    <div class="ui-g-12">
+                                        <div class="ui-g-6">
+                                            <label for="nome_fantasia">Nome Fantasia</label>
+                                            <input pInputText id="nome_fantasia" [(ngModel)]="fabricante.nome_fantasia" />
+                                        </div>
+                                        
+                                        <div class="ui-g-6">
+                                            <label for="nome">Razão Social</label>
+                                            <input pInputText id="nome" [(ngModel)]="fabricante.nome" />
+                                        </div>
+                                    </div>
+                                    <div class="ui-g-12">    
+                                        <div class="ui-g-3">
+                                            <label for="tipo">Natureza</label>
+                                            <input pInputText id="tipo" [(ngModel)]="fabricante.tipo" />                                         
+                                          
+                
+                                            <p-dropdown [options]="cities" [(ngModel)]="fabricante.tipo" placeholder="" optionLabel="name" [showClear]="true"></p-dropdown>
+                                        </div>                   
+                                        <div class="ui-g-3">
+                                            <label for="cpf_cnpj">CPF/CNPJ</label>
+                                            <input pInputText id="cpf_cnpj" [(ngModel)]="fabricante.cpf_cnpj" />
+                                        </div>
+                                    </div>     
+                                    
+                                </p-tabPanel>
+                                <p-tabPanel header="Informações" leftIcon="pi pi-inbox" class="ui-g-12">
+                                    <div class="ui-g-12">                                       
+                                        <textarea pInputTextarea  id="informacoes" [(ngModel)]="fabricante.informacoes"></textarea>                                        
+                                     
+                                    </div>
+                                
+                                </p-tabPanel>         
+                                
+                           </div>                 
+                        </p-tabView>
+
+
+
+
+                        
+                              
             
-                        </div>
                         <p-footer>
                             <div class="ui-dialog-buttonpane ui-helper-clearfix">
                                 <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Excluir"></button>
@@ -71,7 +99,7 @@
                             </div>
                         </p-footer>
                     </p-dialog>      
-                
+               
          
       </div>
   </div>

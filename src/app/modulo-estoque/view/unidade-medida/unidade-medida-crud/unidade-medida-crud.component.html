@@ -40,28 +40,23 @@
                             </div>
                         </ng-template>    
                     </p-table>
-    
-                    <p-dialog  header="Unidade de medida"  [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
-                        <div class="ui-g ui-fluid" *ngIf="unidade_medida">
-                        
-                            <div class="ui-g-12">
-                                <div class="ui-g-2" style="text-align: right">
-                                    <label for="abreviatura">Abreviatura</label>
-                                </div>
-                                <div class="ui-g-3"  >
-                                    <input appAutofocus pInputText id="abreviatura" [(ngModel)]="unidade_medida.abreviatura"   />
-                                </div>
-                            </div>       
             
-                            <div class="ui-g-12">
-                                <div class="ui-g-2" style="text-align: right">
-                                    <label  for="descricao">Nome</label>
-                                </div>
+                    <p-dialog header="Unidade de medida" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" >
+                        <div class="ui-g ui-fluid" *ngIf="unidade_medida">
+                       
+                            <div class="ui-g-12">                               
+                                <div class="ui-g-3"  >
+                                    <label for="abreviatura">Abreviatura</label>
+                                    <input appAutofocus pInputText id="abreviatura" [(ngModel)]="unidade_medida.abreviatura"   />
+                                </div>                           
+                         
+                               
                                 <div class="ui-g-9">
+                                    <label  for="descricao">Descrição</label>
                                     <input pInputText id="descricao" [(ngModel)]="unidade_medida.descricao"/>
                                 </div>
                             </div>
-                       
+                      
                         </div>
                         <p-footer>
                             <div class="ui-dialog-buttonpane ui-helper-clearfix">
