@@ -61,18 +61,67 @@
                                         </div>
                                     </div>
                                     <div class="ui-g-12">    
-                                        <div class="ui-g-3">
-                                            <label for="tipo">Natureza</label>
-                                            <input pInputText id="tipo" [(ngModel)]="fabricante.tipo" />                                         
-                                          
-                
-                                            <p-dropdown [options]="cities" [(ngModel)]="fabricante.tipo" placeholder="" optionLabel="name" [showClear]="true"></p-dropdown>
+                                        <div class="ui-g-4">
+                                            <label for="tipo">Natureza</label>                        
+                                            <p-dropdown [options]="pessoas" [(ngModel)]="fabricante.tipo" placeholder="Escolha uma opção"  [showClear]="true"></p-dropdown>
                                         </div>                   
-                                        <div class="ui-g-3">
+                                        <div class="ui-g-4">
                                             <label for="cpf_cnpj">CPF/CNPJ</label>
                                             <input pInputText id="cpf_cnpj" [(ngModel)]="fabricante.cpf_cnpj" />
                                         </div>
-                                    </div>     
+                                        <div class="ui-g-4">
+                                            <label for="rg_inscricao">Inscrição Municipal</label>
+                                            <input pInputText id="rg_inscricao" [(ngModel)]="fabricante.rg_inscricao" />
+                                        </div>
+                                    </div>  
+                                    <hr>
+                                   
+                                    <div class="ui-g-12">
+                                        <div class="ui-g-11">
+                                            <label for="endereco">Endereço</label>
+                                            <input pInputText id="endereco" [(ngModel)]="fabricante.endereco" />
+                                        </div>                                        
+                                        <div class="ui-g-1">
+                                            <label for="numero">Número</label>
+                                            <input pInputText id="numero" [(ngModel)]="fabricante.numero" />
+                                        </div>                         
+                                    </div>   
+                                    <div class="ui-g-12">
+                                        <div class="ui-g-3">
+                                            <label for="uf">Estado</label>
+                                            <input pInputText id="uf" [(ngModel)]="fabricante.uf" />
+                                        </div>                                        
+                                        <div class="ui-g-4">
+                                            <label for="cidade">Cidade</label>
+                                            <input pInputText id="cidade" [(ngModel)]="fabricante.cidade" />
+                                        </div>        
+                                        <div class="ui-g-3">
+                                            <label for="bairro">Bairro</label>
+                                            <input pInputText id="bairro" [(ngModel)]="fabricante.bairro" />
+                                        </div>        
+                                        <div class="ui-g-2">
+                                            <label for="cep">CEP</label>
+                                            <input pInputText id="cep" [(ngModel)]="fabricante.cep"/>
+                                        </div>                        
+                                    </div>   
+                                  
+                                     
+                                   <hr>
+                                    <div class="ui-g-12">
+                                        <div class="ui-g-3">
+                                            <label for="Telefone">Telefone</label>
+                                            <input pInputText id="telefone" [(ngModel)]="fabricante.telefone" />
+                                        </div>                                        
+                                        <div class="ui-g-5">
+                                            <label for="email">Email de contato</label>
+                                            <input pInputText id="email" [(ngModel)]="fabricante.email" />
+                                        </div>
+                                        <div class="ui-g-4">
+                                            <label for="site">Site</label>
+                                            <input pInputText id="site" [(ngModel)]="fabricante.site" />
+                                        </div>
+                                    </div>   
+                                 
                                     
                                 </p-tabPanel>
                                 <p-tabPanel header="Informações" leftIcon="pi pi-inbox" class="ui-g-12">

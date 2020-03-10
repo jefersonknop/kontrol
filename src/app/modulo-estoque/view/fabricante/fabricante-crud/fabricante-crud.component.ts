@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Fabricante } from 'src/app/modulo-estoque/domain/fabricante';
 import { FabricanteService } from 'src/app/modulo-estoque/service/fabricante-service';
 import { Response } from 'src/app/system/domain/response';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-fabricante-crud',
@@ -16,11 +17,22 @@ export class FabricanteCrudComponent implements OnInit {
   fabricantes: Fabricante[];
   cols: any[];
 
+  pessoas: SelectItem[];
 
-  //tes
+
+  
 
 
-  constructor(private fabricanteService: FabricanteService) { }
+  constructor(private fabricanteService: FabricanteService) {
+
+    this.pessoas = [
+      {label: 'Pessoa Jurídica', value: 'Pessoa Jurídica'},
+      {label: 'Pessoa Física', value: 'Pessoa Física'}
+
+    ];
+   
+
+   }
 
   ngOnInit() {
     this.fabricanteService.list().subscribe(fabricantes => this.fabricantes = fabricantes);
