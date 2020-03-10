@@ -17,6 +17,9 @@ export class FabricanteCrudComponent implements OnInit {
   cols: any[];
 
 
+  //tes
+
+
   constructor(private fabricanteService: FabricanteService) { }
 
   ngOnInit() {
