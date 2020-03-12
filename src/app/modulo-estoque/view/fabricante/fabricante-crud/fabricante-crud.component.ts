@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Fabricante } from 'src/app/modulo-estoque/domain/fabricante';
 import { FabricanteService } from 'src/app/modulo-estoque/service/fabricante-service';
 import { Response } from 'src/app/system/domain/response';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, SelectItem } from 'primeng/api';
+import { Cidade } from 'src/app/system/domain/cidade';
+import { CidadeService } from 'src/app/system/service/cidade-service';
 
 @Component({
   selector: 'app-fabricante-crud',
@@ -15,27 +17,85 @@ export class FabricanteCrudComponent implements OnInit {
   selectedFabricante: Fabricante;
   newFabricante: boolean;
   fabricantes: Fabricante[];
+
+ // cidades: Cidade[];
   cols: any[];
 
   pessoas: SelectItem[];
-
+  estados: SelectItem[];
+  cidadesSelectItem: SelectItem[];
 
   
 
 
-  constructor(private fabricanteService: FabricanteService) {
-
+  constructor(private fabricanteService: FabricanteService, private cidadeService: CidadeService) {
     this.pessoas = [
       {label: 'Pessoa Jurídica', value: 'Pessoa Jurídica'},
       {label: 'Pessoa Física', value: 'Pessoa Física'}
 
     ];
-   
 
+
+    this.estados = [
+      {label: 'Acre', value: 'Acre'},
+      {label: 'Alagoas', value: 'Alagoas'},
+      {label: 'Amapá', value: 'Amapá'},
+      {label: 'Amazonas', value: 'Amazonas'},
+      {label: 'Bahia', value: 'Bahia'},
+      {label: 'Ceará', value: 'Ceará'},
+      {label: 'Distrito Federal', value: 'Distrito Federal'},
+      {label: 'Espírito Santo', value: 'Espírito Santo'},
+      {label: 'Goiás', value: 'Goiás'},
+      {label: 'Maranhão', value: 'Maranhão'},
+      {label: 'Mato Grosso', value: 'Mato Grosso'},
+      {label: 'Mato Grosso do Sul', value: 'Mato Grosso do Sul'},
+      {label: 'Minas Gerais', value: 'Minas Gerais'},
+      {label: 'Pará', value: 'Pará'},
+      {label: 'Paraíba', value: 'Paraíba'},
+      {label: 'Paraná', value: 'Paraná'},
+      {label: 'Pernambuco', value: 'Pernambuco'},
+      {label: 'Piauí', value: 'Piauí'},
+      {label: 'Rio de Janeiro', value: 'Rio de Janeiro'},
+      {label: 'Rio Grande do Norte', value: 'Rio Grande do Norte'},
+      {label: 'Rio Grande do Sul', value: 'Rio Grande do Sul'},
+      {label: 'Rondônia', value: 'Rondônia'},
+      {label: 'Roraima', value: 'Roraima'},
+      {label: 'Santa Catarina', value: 'Santa Catarina'},
+      {label: 'São Paulo', value: 'São Paulo'},
+      {label: 'Sergipe', value: 'Sergipe'},
+      {label: 'Tocantins', value: 'Tocantins'}
+    ];
    }
 
   ngOnInit() {
     this.fabricanteService.list().subscribe(fabricantes => this.fabricantes = fabricantes);
+
+  // this._fornecedorService
+  //  .getEstados()
+  //  .subscribe((dataUf: Object[]) => {
+  //    const estados: Array<Uf> = new Array<Uf>();
+  //    dataUf.forEach((elemento: Uf) => {
+    //    estados.push(elemento);
+//this.constroiFormulario();
+
+   // });
+
+
+
+
+    this.cidadeService.list().subscribe((dataCidades: Object[]) => {
+       // this.cidadesSelectItem: SelectItem<Cidade> = new SelectItem<Cidade>();
+       //  dataCidades.forEach((elemento: Cidade) => {
+        // cidades.push(elemento);
+    //   });
+   
+   //  cidades.forEach (cidade => {
+     //this.cidades.forEach ((cidade: Cidade) => {
+     // this.cidadesSelectItem.push({label: 'cidade.nome', value: 'cidade.nome' });
+   // });
+
+  });
+
     this.cols = [
       { field: 'nome', header: 'Nome' },
       { field: 'endereco', header: 'Endereço' },
@@ -49,6 +109,8 @@ export class FabricanteCrudComponent implements OnInit {
     this.newFabricante = true;  
     this.fabricante = new Fabricante();
     this.displayDialog = true;
+
+
   }
 
   save() {
