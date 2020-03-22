@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Fabricante } from 'src/app/modulo-estoque/domain/fabricante';
 import { FabricanteService } from 'src/app/modulo-estoque/service/fabricante-service';
 import { Response } from 'src/app/system/domain/response';
-import { SelectItem, SelectItem } from 'primeng/api';
+import { SelectItem } from 'primeng/api';
 import { Cidade } from 'src/app/system/domain/cidade';
 import { CidadeService } from 'src/app/system/service/cidade-service';
 
