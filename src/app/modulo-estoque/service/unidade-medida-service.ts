@@ -27,7 +27,7 @@ export class Unidade_medidaService {
 
 
 
-    list(): Observable<Unidade_medida[]> {
+  list(): Observable<Unidade_medida[]> {
 
       // Cache it once if unidades_medida value is false
       if (!this.unidades_medida) {
@@ -56,7 +56,7 @@ export class Unidade_medidaService {
     
     createOrUpdate(unidade_medida: Unidade_medida) {
       unidade_medida.inquilino_id = SharedService.getInstance().usuario.inquilino_id.id; 
-    //  this.clearCache(); 
+      this.clearCache(); 
         if (unidade_medida.id != null){
           return this.http.put(this.baseUrl, unidade_medida);
         

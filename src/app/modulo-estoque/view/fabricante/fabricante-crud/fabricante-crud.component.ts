@@ -75,11 +75,8 @@ export class FabricanteCrudComponent implements OnInit {
   ngOnInit() {
     this.fabricanteService.list().subscribe(fabricantes => this.fabricantes = fabricantes);
 
-    //this.cidadeService.list().subscribe(cidades => this.cidades = cidades);
-  
-
-    this.cidadeService.getCidades().subscribe(cidades => this.cidades = cidades);
     
+  
 
 
     this.cols = [
@@ -101,9 +98,9 @@ export class FabricanteCrudComponent implements OnInit {
   }
 
   save() {
-    let Fabricantes = [...this.fabricantes];
+    let fabricantes = [...this.fabricantes];
     if (this.newFabricante){
-      Fabricantes.push(this.fabricante);
+      fabricantes.push(this.fabricante);
        /*CHAMA O SERVIÇO PARA ADICIONAR UMA NOVA Fabricante */     
        this.fabricanteService.createOrUpdate(this.fabricante).subscribe(response => {
 
@@ -127,7 +124,7 @@ export class FabricanteCrudComponent implements OnInit {
 
     }
     else{
-      Fabricantes[this.fabricantes.indexOf(this.selectedFabricante)] = this.fabricante;
+      fabricantes[this.fabricantes.indexOf(this.selectedFabricante)] = this.fabricante;
       this.fabricanteService.createOrUpdate(this.fabricante).subscribe(response => {
         let res: Response = <Response>response;
 
@@ -143,14 +140,12 @@ export class FabricanteCrudComponent implements OnInit {
           alert(erro);
         });
 
-        this.fabricantes = Fabricantes;
-        this.fabricante = null;
-        this.displayDialog = false;
+      
        
     }
-    //this.Fabricantes = Fabricantes;
-   // this.Fabricante = null;
-    //this.displayDialog = false;
+    this.fabricantes = fabricantes;
+    this.fabricante = null;
+    this.displayDialog = false;
 
   }
 
@@ -208,9 +203,8 @@ export class FabricanteCrudComponent implements OnInit {
 
 
 
-    getCidades() {     
-      alert("Cidades");
-  
+    getCidades() {           
+      this.cidadeService.listByEstado(24).subscribe(cidades => this.cidades = cidades);
       this.cidades.forEach((cidade) => { // foreach statement       
         this.cidadesItens.push({
           'value': cidade.nome,

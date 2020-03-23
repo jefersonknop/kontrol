@@ -15,21 +15,31 @@ export class CidadeService {
   cidades: Observable<Cidade[]>;//** */
 
   constructor(private http: HttpClient) { }
+
+
+   list(): Observable<Cidade[]> {  
+      if (!this.cidades) {
+          this.cidades = this.http.get(this.baseUrl).pipe(
+            map((response: any) => {
+              return response
+            }),
+              publishReplay(1), // this tells Rx to cache the latest emitted
+              refCount() // and this tells Rx to keep the Observable alive as long as there are any Subscribers
+          );
+      }
+      return this.cidades;
+   }
+    
   
 
 
-    list() {
-   
-   //  this.http.get<Cidade[]>(this.baseUrl).subscribe(cidades => this.cidades = cidades);    
-   //  return this.cidades;
-       return this.http.get<Cidade[]>(this.baseUrl);
-    }
 
     getById(id: number) {
       return this.http.get<Cidade>(this.baseUrl + '/' + id);
     }
 
     createOrUpdate(cidade: Cidade) {
+       this.clearCache(); 
         if (cidade.id != null){
           return this.http.put(this.baseUrl, cidade);
         }
@@ -40,37 +50,34 @@ export class CidadeService {
 
     
     delete(id: number) {
+      this.clearCache(); 
       return this.http.delete(this.baseUrl + '/' + id);
     }
 
 
 
-    //********************************* */
-
-    // Get configs from server | HTTP GET
-    getCidades(): Observable<Cidade[]> {
-
-      // Cache it once if configs value is false
-      if (!this.cidades) {
-          this.cidades = this.http.get(this.baseUrl).pipe(
-            map((response: any) => {
-              return response
-            }),
-              publishReplay(1), // this tells Rx to cache the latest emitted
-              refCount() // and this tells Rx to keep the Observable alive as long as there are any Subscribers
-          );
-      }
-
-
-      return this.cidades;
-  }
-
+    
 
  clearCache() {
      this.cidades = null;
   }
 
 
+
+
+  //********************************************** */
+  listByEstado(estado_id: number): Observable<Cidade[]> {  
+   // if (!this.cidades) {
+        this.cidades = this.http.get(this.baseUrl + '/estado/' +estado_id).pipe(
+          map((response: any) => {
+            return response
+          }),
+            publishReplay(1), // this tells Rx to cache the latest emitted
+            refCount() // and this tells Rx to keep the Observable alive as long as there are any Subscribers
+        );
+   // }
+    return this.cidades;
+ }
 
 
 
