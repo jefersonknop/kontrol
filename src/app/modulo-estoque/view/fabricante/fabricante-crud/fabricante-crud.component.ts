@@ -42,33 +42,33 @@ export class FabricanteCrudComponent implements OnInit {
 
 
     this.estados = [
-      {label: 'Acre', value: 'Acre'},
-      {label: 'Alagoas', value: 'Alagoas'},
-      {label: 'Amapá', value: 'Amapá'},
-      {label: 'Amazonas', value: 'Amazonas'},
-      {label: 'Bahia', value: 'Bahia'},
-      {label: 'Ceará', value: 'Ceará'},
-      {label: 'Distrito Federal', value: 'Distrito Federal'},
-      {label: 'Espírito Santo', value: 'Espírito Santo'},
-      {label: 'Goiás', value: 'Goiás'},
-      {label: 'Maranhão', value: 'Maranhão'},
-      {label: 'Mato Grosso', value: 'Mato Grosso'},
-      {label: 'Mato Grosso do Sul', value: 'Mato Grosso do Sul'},
-      {label: 'Minas Gerais', value: 'Minas Gerais'},
-      {label: 'Pará', value: 'Pará'},
-      {label: 'Paraíba', value: 'Paraíba'},
-      {label: 'Paraná', value: 'Paraná'},
-      {label: 'Pernambuco', value: 'Pernambuco'},
-      {label: 'Piauí', value: 'Piauí'},
-      {label: 'Rio de Janeiro', value: 'Rio de Janeiro'},
-      {label: 'Rio Grande do Norte', value: 'Rio Grande do Norte'},
-      {label: 'Rio Grande do Sul', value: 'Rio Grande do Sul'},
-      {label: 'Rondônia', value: 'Rondônia'},
-      {label: 'Roraima', value: 'Roraima'},
-      {label: 'Santa Catarina', value: 'Santa Catarina'},
-      {label: 'São Paulo', value: 'São Paulo'},
-      {label: 'Sergipe', value: 'Sergipe'},
-      {label: 'Tocantins', value: 'Tocantins'}
+      {label: 'Acre', value: 'AC'},
+      {label: 'Alagoas', value: 'AL'},
+      {label: 'Amapá', value: 'AP'},
+      {label: 'Amazonas', value: 'AM'},
+      {label: 'Bahia', value: 'BA'},
+      {label: 'Ceará', value: 'CE'},
+      {label: 'Distrito Federal', value: 'DF'},
+      {label: 'Espírito Santo', value: 'ES'},
+      {label: 'Goiás', value: 'GO'},
+      {label: 'Maranhão', value: 'MA'},
+      {label: 'Mato Grosso', value: 'MG'},
+      {label: 'Mato Grosso do Sul', value: 'MS'},
+      {label: 'Minas Gerais', value: 'MG'},
+      {label: 'Pará', value: 'PA'},
+      {label: 'Paraíba', value: 'PB'},
+      {label: 'Paraná', value: 'PR'},
+      {label: 'Pernambuco', value: 'PE'},
+      {label: 'Piauí', value: 'PI'},
+      {label: 'Rio de Janeiro', value: 'RJ'},
+      {label: 'Rio Grande do Norte', value: 'RN'},
+      {label: 'Rio Grande do Sul', value: 'RS'},
+      {label: 'Rondônia', value: 'RO'},
+      {label: 'Roraima', value: 'RR'},
+      {label: 'Santa Catarina', value: 'SC'},
+      {label: 'São Paulo', value: 'SP'},
+      {label: 'Sergipe', value: 'SE'},
+      {label: 'Tocantins', value: 'TO'}
     ];
    }
 
@@ -203,8 +203,8 @@ export class FabricanteCrudComponent implements OnInit {
 
 
 
-    getCidades() {           
-      this.cidadeService.listByEstado(24).subscribe(cidades => this.cidades = cidades);
+    getCidades(estado: string) {           
+      this.cidadeService.listBySiglaEstado(estado).subscribe(cidades => this.cidades = cidades);
       this.cidades.forEach((cidade) => { // foreach statement       
         this.cidadesItens.push({
           'value': cidade.nome,

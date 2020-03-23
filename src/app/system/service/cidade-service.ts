@@ -66,7 +66,7 @@ export class CidadeService {
 
 
   //********************************************** */
-  listByEstado(estado_id: number): Observable<Cidade[]> {  
+  listByEstado_id(estado_id: number): Observable<Cidade[]> {  
    // if (!this.cidades) {
         this.cidades = this.http.get(this.baseUrl + '/estado/' +estado_id).pipe(
           map((response: any) => {
@@ -78,6 +78,27 @@ export class CidadeService {
    // }
     return this.cidades;
  }
+
+ listByEstado(nome: string): Observable<Cidade[]> {  
+
+       this.cidades = this.http.get(this.baseUrl + '/estado/nome/' +nome).pipe(
+         map((response: any) => {
+           return response
+         }),
+           publishReplay(1), // this tells Rx to cache the latest emitted
+           refCount() // and this tells Rx to keep the Observable alive as long as there are any Subscribers
+       );
+
+   return this.cidades;
+}
+
+
+listBySiglaEstado(sigla: string) {  
+
+  return this.http.get<Cidade[]>(this.baseUrl + '/estado/sigla/' +sigla);
+  
+  
+}
 
 
 
