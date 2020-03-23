@@ -18,12 +18,17 @@ export class FabricanteCrudComponent implements OnInit {
   newFabricante: boolean;
   fabricantes: Fabricante[];
 
- // cidades: Cidade[];
+  cidades: Cidade[];
   cols: any[];
 
   pessoas: SelectItem[];
   estados: SelectItem[];
-  cidadesSelectItem: SelectItem[];
+
+  cidadesItens: SelectItem[] = [];
+
+
+
+
 
   
 
@@ -70,31 +75,12 @@ export class FabricanteCrudComponent implements OnInit {
   ngOnInit() {
     this.fabricanteService.list().subscribe(fabricantes => this.fabricantes = fabricantes);
 
-  // this._fornecedorService
-  //  .getEstados()
-  //  .subscribe((dataUf: Object[]) => {
-  //    const estados: Array<Uf> = new Array<Uf>();
-  //    dataUf.forEach((elemento: Uf) => {
-    //    estados.push(elemento);
-//this.constroiFormulario();
+    //this.cidadeService.list().subscribe(cidades => this.cidades = cidades);
+  
 
-   // });
+    this.cidadeService.getCidades().subscribe(cidades => this.cidades = cidades);
+    
 
-
-
-
-    this.cidadeService.list().subscribe((dataCidades: Object[]) => {
-       // this.cidadesSelectItem: SelectItem<Cidade> = new SelectItem<Cidade>();
-       //  dataCidades.forEach((elemento: Cidade) => {
-        // cidades.push(elemento);
-    //   });
-   
-   //  cidades.forEach (cidade => {
-     //this.cidades.forEach ((cidade: Cidade) => {
-     // this.cidadesSelectItem.push({label: 'cidade.nome', value: 'cidade.nome' });
-   // });
-
-  });
 
     this.cols = [
       { field: 'nome', header: 'Nome' },
@@ -108,8 +94,9 @@ export class FabricanteCrudComponent implements OnInit {
   showDialogToAdd() {
     this.newFabricante = true;  
     this.fabricante = new Fabricante();
-    this.displayDialog = true;
 
+
+    this.displayDialog = true;
 
   }
 
@@ -215,6 +202,22 @@ export class FabricanteCrudComponent implements OnInit {
 
     onTabChange(event) {
        // this.messageService.add({severity:'info', summary:'Tab Expanded', detail: 'Index: ' + event.index});
+    }
+
+
+
+
+
+    getCidades() {     
+      alert("Cidades");
+  
+      this.cidades.forEach((cidade) => { // foreach statement       
+        this.cidadesItens.push({
+          'value': cidade.nome,
+          'label' :  cidade.nome
+        });
+       });
+  
     }
 
 

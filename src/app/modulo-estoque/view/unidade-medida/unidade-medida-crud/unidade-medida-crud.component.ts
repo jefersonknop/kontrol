@@ -22,6 +22,7 @@ export class UnidadeMedidaCrudComponent implements OnInit {
 
   ngOnInit() {
     this.unidade_medidaService.list().subscribe(unidade_medidas => this.unidade_medidas = unidade_medidas);
+
     this.cols = [
       { field: 'descricao', header: 'Unidade de medida' },
       { field: 'abreviatura', header: 'Abreviatura' }

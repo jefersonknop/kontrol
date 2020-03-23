@@ -89,11 +89,11 @@
                                     <div class="ui-g-12">
                                         <div class="ui-g-3">
                                             <label for="estado">Estado</label>                        
-                                            <p-dropdown [options]="estados" [(ngModel)]="fabricante.uf" placeholder="Escolha um estado"  [showClear]="true"></p-dropdown>                                          
+                                            <p-dropdown [options]="estados" [(ngModel)]="fabricante.uf" placeholder="Escolha um estado"  [showClear]="true" (onChange)="getCidades()"></p-dropdown>                                          
                                         </div>                                        
                                         <div class="ui-g-4">
                                             <label for="cidade">Cidade</label>
-                                            <p-dropdown  [options]="cidadesSelectItem" [(ngModel)]="fabricante.cidade" placeholder="Escolha uma cidade"  [showClear]="true"></p-dropdown>  
+                                            <p-dropdown  [options]="cidadesItens" [(ngModel)]="fabricante.cidade" placeholder="Escolha uma cidade"  [showClear]="true"></p-dropdown>  
                                         </div>        
                                         <div class="ui-g-3">
                                             <label for="bairro">Bairro</label>
