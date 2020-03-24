@@ -87,14 +87,19 @@
                                         </div>                         
                                     </div>   
                                     <div class="ui-g-12">
-                                        <div class="ui-g-3">
-                                            <label for="estado">Estado</label>                        
-                                            <p-dropdown [options]="estados" [(ngModel)]="fabricante.uf" placeholder="Escolha um estado"  [showClear]="true" (onChange)="getCidades(fabricante.uf)"></p-dropdown>                                          
-                                        </div>                                        
-                                        <div class="ui-g-4">
-                                            <label for="cidade">Cidade</label>
-                                            <p-dropdown  [options]="cidadesItens" [(ngModel)]="fabricante.cidade" placeholder="Escolha uma cidade"  [showClear]="true"></p-dropdown>  
-                                        </div>        
+                                        <div class="ui-g-5">
+                                            <label for="cidade">Cidade</label>                                        
+                                            <input pInputText  disabled="true" id="cidade" [(ngModel)]="fabricante.cidade" />   
+                                        </div>     
+                                        <div class="ui-g-1">
+                                            <label for="estado">Estado</label> 
+                                            <input pInputText  disabled="true" id="uf" [(ngModel)]="fabricante.uf" />     
+                                        </div>     
+                                        <div class="ui-g-1">
+                                            <label style="color: white">.</label><br>
+                                            <button type="button" (click)="showCidadeList()" pButton icon="pi pi-search"></button>
+                                        </div>                                     
+                                          
                                         <div class="ui-g-3">
                                             <label for="bairro">Bairro</label>
                                             <input pInputText id="bairro" [(ngModel)]="fabricante.bairro" />

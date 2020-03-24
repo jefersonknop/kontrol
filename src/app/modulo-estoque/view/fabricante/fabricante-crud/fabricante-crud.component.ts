@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Fabricante } from 'src/app/modulo-estoque/domain/fabricante';
 import { FabricanteService } from 'src/app/modulo-estoque/service/fabricante-service';
 import { Response } from 'src/app/system/domain/response';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, DialogService } from 'primeng/api';
 import { Cidade } from 'src/app/system/domain/cidade';
 import { CidadeService } from 'src/app/system/service/cidade-service';
+import { CidadeListComponent } from 'src/app/system/view/cidade/cidade-list/cidade-list.component';
 
 @Component({
   selector: 'app-fabricante-crud',
   templateUrl: './fabricante-crud.component.html',
-  styleUrls: ['./fabricante-crud.component.css']
+  styleUrls: ['./fabricante-crud.component.css'],
+  providers: [DialogService]
 })
 export class FabricanteCrudComponent implements OnInit {
   displayDialog: boolean;
@@ -18,13 +20,16 @@ export class FabricanteCrudComponent implements OnInit {
   newFabricante: boolean;
   fabricantes: Fabricante[];
 
+
+
+  cidade: Cidade; 
+  selectedCidade: Cidade;
   cidades: Cidade[];
+  
   cols: any[];
 
   pessoas: SelectItem[];
-  estados: SelectItem[];
-
-  cidadesItens: SelectItem[] = [];
+ 
 
 
 
@@ -33,14 +38,14 @@ export class FabricanteCrudComponent implements OnInit {
   
 
 
-  constructor(private fabricanteService: FabricanteService, private cidadeService: CidadeService) {
+  constructor(private fabricanteService: FabricanteService, private cidadeService: CidadeService, public dialogService: DialogService) {
     this.pessoas = [
       {label: 'Pessoa Jurídica', value: 'Pessoa Jurídica'},
       {label: 'Pessoa Física', value: 'Pessoa Física'}
 
     ];
 
-
+/*
     this.estados = [
       {label: 'Acre', value: 'AC'},
       {label: 'Alagoas', value: 'AL'},
@@ -69,7 +74,7 @@ export class FabricanteCrudComponent implements OnInit {
       {label: 'São Paulo', value: 'SP'},
       {label: 'Sergipe', value: 'SE'},
       {label: 'Tocantins', value: 'TO'}
-    ];
+    ];*/
    }
 
   ngOnInit() {
@@ -203,7 +208,7 @@ export class FabricanteCrudComponent implements OnInit {
 
 
 
-    getCidades(estado: string) {           
+   /* getCidades(estado: string) {           
       this.cidadeService.listBySiglaEstado(estado).subscribe(cidades => this.cidades = cidades);
       this.cidades.forEach((cidade) => { // foreach statement       
         this.cidadesItens.push({
@@ -213,7 +218,24 @@ export class FabricanteCrudComponent implements OnInit {
        });
   
     }
+   */
 
+
+  showCidadeList() {
+    const ref = this.dialogService.open(CidadeListComponent, {
+        header: 'Escolha uma cidade',
+        width: '70%',
+      //contentStyle: {"max-height": "350px", "overflow": "auto"}
+       contentStyle: {"overflow": "auto"}
+    });
+
+    ref.onClose.subscribe((cidade: Cidade) =>{
+        if (cidade) {
+             this.fabricante.cidade = cidade.nome;
+             this.fabricante.uf = cidade.estado_id.sigla;
+        }
+    });
+  }
 
 }
 

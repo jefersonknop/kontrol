@@ -113,6 +113,9 @@ import { UsuarioService } from './system/service/usuario-service';
 import { FabricanteService } from './modulo-estoque/service/fabricante-service';
 import { FabricanteCrudComponent } from './modulo-estoque/view/fabricante/fabricante-crud/fabricante-crud.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { CidadeListComponent } from './system/view/cidade/cidade-list/cidade-list.component';
+
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @NgModule({
     imports: [
@@ -188,6 +191,8 @@ import { AutofocusDirective } from './directives/autofocus.directive';
         VirtualScrollerModule,
         BrowserAnimationsModule,
         ProgressSpinnerModule,
+
+        DynamicDialogModule
     ],
     declarations: [
         AppComponent,
@@ -211,7 +216,11 @@ import { AutofocusDirective } from './directives/autofocus.directive';
         UnidadeMedidaCrudComponent,
         LoginComponent,
         FabricanteCrudComponent,
-        AutofocusDirective
+        AutofocusDirective,
+        CidadeListComponent
+    ],
+    entryComponents: [       
+        CidadeListComponent    
     ],
     exports:[AutofocusDirective],
     providers: [
