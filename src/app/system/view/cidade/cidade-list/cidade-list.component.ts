@@ -13,6 +13,7 @@ import { CidadeService } from 'src/app/system/service/cidade-service';
 export class CidadeListComponent implements OnInit {
   cidades: Cidade[];
   cols: any[];
+ // pesquisa: string = "Canoinhas";
             
   constructor(private cidadeService: CidadeService, public ref: DynamicDialogRef, public config: DynamicDialogConfig) { }
 
@@ -24,6 +25,7 @@ export class CidadeListComponent implements OnInit {
         { field: 'estado_id.nome', header: 'Estado' }
       ];
   }
+  
 
   selectCidade(cidade: Cidade) {
       this.ref.close(cidade);
