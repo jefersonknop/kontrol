@@ -20,6 +20,7 @@ export class FabricanteCrudComponent implements OnInit {
   newFabricante: boolean;
   fabricantes: Fabricante[];
 
+ 
 
 
   cidade: Cidade; 
@@ -96,6 +97,7 @@ export class FabricanteCrudComponent implements OnInit {
   showDialogToAdd() {
     this.newFabricante = true;  
     this.fabricante = new Fabricante();
+    this.fabricante.tipo = 'Pessoa Jurídica';
 
 
     this.displayDialog = true;

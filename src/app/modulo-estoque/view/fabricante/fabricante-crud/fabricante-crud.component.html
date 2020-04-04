@@ -50,27 +50,36 @@
                             <div class="ui-g ui-fluid" *ngIf="fabricante">                 
                                 <p-tabPanel header="Dados Cadastrais" leftIcon="pi pi-calendar">
                                     <div class="ui-g-12">
-                                        <div class="ui-g-6">
-                                            <label for="nome_fantasia">Nome Fantasia</label>
-                                            <input pInputText id="nome_fantasia" [(ngModel)]="fabricante.nome_fantasia" />
-                                        </div>
-                                        
-                                        <div class="ui-g-6">
-                                            <label for="nome">Razão Social</label>
-                                            <input pInputText id="nome" [(ngModel)]="fabricante.nome" />
-                                        </div>
-                                    </div>
-                                    <div class="ui-g-12">    
                                         <div class="ui-g-4">
                                             <label for="tipo">Natureza</label>                        
-                                            <p-dropdown [options]="pessoas" [(ngModel)]="fabricante.tipo" placeholder="Escolha uma opção"  [showClear]="true"></p-dropdown>
-                                        </div>                   
-                                        <div class="ui-g-4">
-                                            <label for="cpf_cnpj">CPF/CNPJ</label>
-                                            <input pInputText id="cpf_cnpj" [(ngModel)]="fabricante.cpf_cnpj" />
+                                            <p-dropdown [options]="pessoas" [(ngModel)]="fabricante.tipo" placeholder="Escolha uma opção" ></p-dropdown>
+                                        </div>      
+                                        <div class="ui-g-8">
+                                            <label *ngIf="fabricante.tipo === 'Pessoa Jurídica'" for="rg_inscricao">Nome Fantasia</label>
+                                            <label *ngIf="fabricante.tipo === 'Pessoa Física'" for="rg_inscricao">Nome</label>
+                                            <input pInputText id="nome_fantasia" [(ngModel)]="fabricante.nome_fantasia" />
+                                        </div>                                        
+                                       
+                                    </div>
+                                    <div class="ui-g-12">           
+                                        <div *ngIf="fabricante.tipo === 'Pessoa Jurídica'" class="ui-g-6">
+                                            <label for="nome">Razão Social</label>
+                                            <input pInputText id="nome" [(ngModel)]="fabricante.nome" />
+                                        </div>                              
+                                                   
+                                        <div *ngIf="fabricante.tipo === 'Pessoa Jurídica'" class="ui-g-3">
+                                            <label for="cpf_cnpj">CNPJ</label>                                         
+                                            <p-inputMask  id="cpf_cnpj" mask="99.999.999/9999-99"  [(ngModel)]="fabricante.cpf_cnpj"></p-inputMask>
+
                                         </div>
-                                        <div class="ui-g-4">
-                                            <label for="rg_inscricao">Inscrição Municipal</label>
+                                        <div *ngIf="fabricante.tipo === 'Pessoa Física'" class="ui-g-3">
+                                            <label for="cpf_cnpj">CPF</label>                                         
+                                            <p-inputMask  id="cpf_cnpj" mask="999.999.999-99"  [(ngModel)]="fabricante.cpf_cnpj"></p-inputMask>
+
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <label *ngIf="fabricante.tipo === 'Pessoa Jurídica'" for="rg_inscricao">Inscrição Municipal</label>
+                                            <label *ngIf="fabricante.tipo === 'Pessoa Física'" for="rg_inscricao">RG</label>
                                             <input pInputText id="rg_inscricao" [(ngModel)]="fabricante.rg_inscricao" />
                                         </div>
                                     </div>  
@@ -128,14 +137,14 @@
                                     </div>   
                                  
                                     
-                                </p-tabPanel>
-                                <p-tabPanel header="Informações" leftIcon="pi pi-inbox" class="ui-g-12">
-                                    <div class="ui-g-12">                                       
-                                        <textarea pInputTextarea  id="informacoes" [(ngModel)]="fabricante.informacoes"></textarea>                                        
-                                     
-                                    </div>
-                                
-                                </p-tabPanel>         
+                                </p-tabPanel>                                      
+                                  <p-tabPanel  header="Informações"  leftIcon="pi pi-inbox" class="ui-g-12">
+                                        <div class="ui-g-12">                                       
+                                            <textarea pInputTextarea  id="informacoes" [(ngModel)]="fabricante.informacoes"></textarea>                                        
+                                        
+                                        </div>                                    
+                                </p-tabPanel>       
+                              
                                 
                            </div>                 
                         </p-tabView>

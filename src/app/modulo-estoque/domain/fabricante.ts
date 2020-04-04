@@ -5,7 +5,7 @@ export class Fabricante{
     nome_fantasia: string;
     cpf_cnpj: string;
     rg_inscricao: string;
-    logradouro: string;
+    logradouro: string;    
     numero: string;
     cep: string;
     bairro: string;
