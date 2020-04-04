@@ -98,6 +98,7 @@ export class FabricanteCrudComponent implements OnInit {
     this.newFabricante = true;  
     this.fabricante = new Fabricante();
     this.fabricante.tipo = 'Pessoa Jurídica';
+    this.fabricante.nome = '';
 
 
     this.displayDialog = true;
