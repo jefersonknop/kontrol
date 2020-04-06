@@ -99,6 +99,23 @@ export class FabricanteCrudComponent implements OnInit {
     this.fabricante = new Fabricante();
     this.fabricante.tipo = 'Pessoa Jurídica';
     this.fabricante.nome = '';
+    this.fabricante.nome_fantasia = '';
+    this.fabricante.cpf_cnpj = '';
+    this.fabricante.rg_inscricao = '';
+    this.fabricante.logradouro = '';   
+    this.fabricante.numero = '';
+    this.fabricante.cep = '';
+    this.fabricante.bairro = '';
+    this.fabricante.cidade = '';
+    this.fabricante.uf = '';
+    this.fabricante.pais = '';
+    this.fabricante.latitude = '';
+    this.fabricante.longitude = '';
+    this.fabricante.telefone = '';
+    this.fabricante.celular = '';
+    this.fabricante.email = '';
+    this.fabricante.site = '';
+    this.fabricante.informacoes = '';  
 
 
     this.displayDialog = true;

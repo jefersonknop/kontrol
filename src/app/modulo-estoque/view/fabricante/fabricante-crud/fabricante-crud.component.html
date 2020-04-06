@@ -64,12 +64,12 @@
                                     <div class="ui-g-12">           
                                         <div *ngIf="fabricante.tipo === 'Pessoa Jurídica'" class="ui-g-6">
                                             <label for="nome">Razão Social</label>
-                                            <input pInputText id="nome" [(ngModel)]="fabricante.nome" />
+                                            <input pInputText id="nome" [(ngModel)]="fabricante.nome" ng-required="true"/>
                                         </div>                              
                                                    
                                         <div *ngIf="fabricante.tipo === 'Pessoa Jurídica'" class="ui-g-3">
                                             <label for="cpf_cnpj">CNPJ</label>                                         
-                                            <p-inputMask  id="cpf_cnpj" mask="99.999.999/9999-99"  [(ngModel)]="fabricante.cpf_cnpj"></p-inputMask>
+                                            <p-inputMask  id="cpf_cnpj" mask="99.999.999/9999-99"  [(ngModel)]="fabricante.cpf_cnpj" ng-required="true"></p-inputMask>
 
                                         </div>
                                         <div *ngIf="fabricante.tipo === 'Pessoa Física'" class="ui-g-3">
