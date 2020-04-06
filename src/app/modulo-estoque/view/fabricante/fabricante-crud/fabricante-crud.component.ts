@@ -123,6 +123,23 @@ export class FabricanteCrudComponent implements OnInit {
   }
 
   save() {
+    if (this.fabricante.nome==""){
+      if (this.fabricante.tipo === "Pessoa Jurídica"){
+        alert("Informar Razão Social");
+      }
+      else{
+        alert("Informar nome");
+      }      
+      return;
+    }
+    //else if (this.linha.tipo==""){
+      //alert("Informar tipo da linha");
+     // return;      
+   // } 
+   
+
+
+
     let fabricantes = [...this.fabricantes];
     if (this.newFabricante){
       fabricantes.push(this.fabricante);

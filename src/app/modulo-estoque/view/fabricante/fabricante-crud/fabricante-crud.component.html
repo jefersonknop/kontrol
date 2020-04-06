@@ -55,21 +55,21 @@
                                             <p-dropdown [options]="pessoas" [(ngModel)]="fabricante.tipo" placeholder="Escolha uma opção" ></p-dropdown>
                                         </div>      
                                         <div class="ui-g-8">
-                                            <label *ngIf="fabricante.tipo === 'Pessoa Jurídica'" for="rg_inscricao">Nome Fantasia</label>
-                                            <label *ngIf="fabricante.tipo === 'Pessoa Física'" for="rg_inscricao">Nome</label>
-                                            <input pInputText id="nome_fantasia" [(ngModel)]="fabricante.nome_fantasia" />
+                                            <label *ngIf="fabricante.tipo === 'Pessoa Jurídica'" for="nome" style="font-weight: bold">Razão Social</label>
+                                            <label *ngIf="fabricante.tipo === 'Pessoa Física'" for="nome" style="font-weight: bold" >Nome</label>
+                                            <input pInputText id="nome" [(ngModel)]="fabricante.nome" ng-required="true" style="font-weight: bold"/>
                                         </div>                                        
                                        
                                     </div>
                                     <div class="ui-g-12">           
                                         <div *ngIf="fabricante.tipo === 'Pessoa Jurídica'" class="ui-g-6">
-                                            <label for="nome">Razão Social</label>
-                                            <input pInputText id="nome" [(ngModel)]="fabricante.nome" ng-required="true"/>
+                                            <label for="nome_fantasia">Nome Fantasia</label>
+                                            <input pInputText id="nome_fantasia" [(ngModel)]="fabricante.nome_fantasia"/>
                                         </div>                              
                                                    
                                         <div *ngIf="fabricante.tipo === 'Pessoa Jurídica'" class="ui-g-3">
                                             <label for="cpf_cnpj">CNPJ</label>                                         
-                                            <p-inputMask  id="cpf_cnpj" mask="99.999.999/9999-99"  [(ngModel)]="fabricante.cpf_cnpj" ng-required="true"></p-inputMask>
+                                            <p-inputMask  id="cpf_cnpj" mask="99.999.999/9999-99"  [(ngModel)]="fabricante.cpf_cnpj"></p-inputMask>
 
                                         </div>
                                         <div *ngIf="fabricante.tipo === 'Pessoa Física'" class="ui-g-3">
@@ -97,12 +97,12 @@
                                     </div>   
                                     <div class="ui-g-12">
                                         <div class="ui-g-5">
-                                            <label for="cidade">Cidade</label>                                        
-                                            <input pInputText  disabled="true" id="cidade" [(ngModel)]="fabricante.cidade" />   
+                                            <label for="cidade" style="color: blue">Cidade</label>                                        
+                                            <input pInputText  style="background-color:#E8E8E8" readonly="true"  id="cidade" [(ngModel)]="fabricante.cidade" />   
                                         </div>     
                                         <div class="ui-g-1">
-                                            <label for="estado">Estado</label> 
-                                            <input pInputText  disabled="true" id="uf" [(ngModel)]="fabricante.uf" />     
+                                            <label for="estado" style="color: blue">Estado</label> 
+                                            <input pInputText  style="background-color:#E8E8E8" readonly="true"  id="uf" [(ngModel)]="fabricante.uf" />     
                                         </div>     
                                         <div class="ui-g-1">
                                             <label style="color: white">.</label><br>
