@@ -116,6 +116,7 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 import { CidadeListComponent } from './system/view/cidade/cidade-list/cidade-list.component';
 
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ProdutoMarcaCrudComponent } from './modulo-operacional/view/produtoMarca/produto-marca-crud/produto-marca-crud.component';
 
 @NgModule({
     imports: [
@@ -217,7 +218,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
         LoginComponent,
         FabricanteCrudComponent,
         AutofocusDirective,
-        CidadeListComponent
+        CidadeListComponent,
+        ProdutoMarcaCrudComponent
     ],
     entryComponents: [       
         CidadeListComponent    
