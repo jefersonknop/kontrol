@@ -118,6 +118,7 @@ import { CidadeListComponent } from './system/view/cidade/cidade-list/cidade-lis
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ProdutoMarcaCrudComponent } from './modulo-operacional/view/produtoMarca/produto-marca-crud/produto-marca-crud.component';
 import { ProdutoMarcaService } from './modulo-operacional/service/produtoMarca-service';
+import { AdmModuloCrudComponent } from './modulo-administrativo/view/adm-modulo-crud/adm-modulo-crud.component';
 
 @NgModule({
     imports: [
@@ -220,7 +221,8 @@ import { ProdutoMarcaService } from './modulo-operacional/service/produtoMarca-s
         FabricanteCrudComponent,
         AutofocusDirective,
         CidadeListComponent,
-        ProdutoMarcaCrudComponent
+        ProdutoMarcaCrudComponent,
+        AdmModuloCrudComponent
     ],
     entryComponents: [       
         CidadeListComponent    
