@@ -17,7 +17,7 @@ import { ProdutoMarca } from '../domain/produtoMarca';
 
 @Injectable()
 export class ProdutoMarcaService {
-  baseUrl: string = ConfigService.url_Kestoque_api+ '/produtoMarcas';
+  baseUrl: string = ConfigService.url_Knop_api+ '/produtoMarcas';
 
   produtoMarcas: Observable<ProdutoMarca[]>= null;//** */
 

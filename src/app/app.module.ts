@@ -117,6 +117,7 @@ import { CidadeListComponent } from './system/view/cidade/cidade-list/cidade-lis
 
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ProdutoMarcaCrudComponent } from './modulo-operacional/view/produtoMarca/produto-marca-crud/produto-marca-crud.component';
+import { ProdutoMarcaService } from './modulo-operacional/service/produtoMarca-service';
 
 @NgModule({
     imports: [
@@ -231,6 +232,7 @@ import { ProdutoMarcaCrudComponent } from './modulo-operacional/view/produtoMarc
         CidadeService, ConfigService, EstadoService, InquilinoService,
         FabricanteService, UsuarioService, FabricanteService,
         Unidade_medidaService,
+        ProdutoMarcaService,
         AuthGuard,      
         SharedService,
        {

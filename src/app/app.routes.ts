@@ -18,6 +18,7 @@ import { UnidadeMedidaCrudComponent } from './modulo-estoque/view/unidade-medida
 import { LoginComponent } from './system/view/login/login.component';
 import { AuthGuard } from './system/security/auth.guard';
 import { FabricanteCrudComponent } from './modulo-estoque/view/fabricante/fabricante-crud/fabricante-crud.component';
+import { ProdutoMarcaCrudComponent } from './modulo-operacional/view/produtoMarca/produto-marca-crud/produto-marca-crud.component';
 
 export const routes: Routes = [
 //    {path: '', component: DashboardDemoComponent},
@@ -35,10 +36,16 @@ export const routes: Routes = [
     {path: 'file', component: FileDemoComponent,  canActivate: [AuthGuard]}, 
     {path: 'utils', component: UtilsDemoComponent,  canActivate: [AuthGuard]}, 
     {path: 'documentation', component: DocumentationComponent,  canActivate: [AuthGuard]}, 
-    //Estoque/Mercadorias
+
     {path: 'login', component: LoginComponent},
+    
+    //Estoque/Mercadorias 
     {path: 'Unidade_medida', component: UnidadeMedidaCrudComponent,  canActivate: [AuthGuard]}, 
     {path: 'Fabricante', component: FabricanteCrudComponent,  canActivate: [AuthGuard]}, 
+
+
+    //Operacional
+    {path: 'ProdutoMarca', component: ProdutoMarcaCrudComponent,  canActivate: [AuthGuard]}, 
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'});
