@@ -1,3 +1,73 @@
-<p>
-  adm-modulo-crud works!
-</p>
+<div class="ui-g"> 
+
+  <!----------------------------------------TABELA---------------------------------------->
+  
+  
+    <div class="ui-g-12">
+        <div class="card">
+            <h1>Módulos</h1>        
+            <p>
+                      <p-table #dt [columns]="cols" [value]="admModulos" selectionMode="single" [(selection)]="selectedAdmModulo" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+                          <ng-template pTemplate="caption">
+                            
+                              <div style="text-align: right">        
+                                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                                  <input type="text" pInputText size="50" placeholder="Pesquisa" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                              </div>
+                          </ng-template>
+                          <ng-template pTemplate="header" let-columns>
+                              <tr>
+                                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                      {{col.header}}
+                                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                                  </th>
+                              </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-rowData let-columns="columns">
+                              <tr [pSelectableRow]="rowData">
+                                  <td *ngFor="let col of columns">
+                                      {{rowData[col.field]}}
+                                  </td>
+                              </tr>
+                          </ng-template>
+                          <ng-template pTemplate="summary" let-rowData>
+                              <div style="text-align:left">
+                                  <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Novo"></button>
+                              </div>
+                          </ng-template>    
+                      </p-table>
+              
+                      <p-dialog header="Módulo" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" >
+                          <div class="ui-g ui-fluid" *ngIf="admModulo">
+                         
+                              <div class="ui-g-12">       
+                                
+                                 <div class="ui-g-3">
+                                     <label  for="codigo">Código</label>
+                                     <input appAutofocus pInputText id="codigo" [(ngModel)]="admModulo.codigo"/>
+                                 </div>
+                                  <div class="ui-g-9"  >
+                                      <label for="nome">Nome</label>
+                                      <input  pInputText id="nome" [(ngModel)]="admModulo.nome"/>
+                                  </div>  
+                              </div>
+
+                              <div class="ui-g-12">    
+                                <div class="ui-g-12">
+                                    <label  for="descricao">Descrição</label>
+                                    <input pInputText id="descricao" [(ngModel)]="admModulo.descricao"/>
+                                </div>
+                            </div>
+                        
+                          </div>
+                          <p-footer>
+                              <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                                  <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Excluir"></button>
+                                  <button type="button" pButton icon="fa fa-check" (click)="save()" label="Salvar"></button>
+                              </div>
+                          </p-footer>
+                      </p-dialog>   
+            </p>
+        </div>
+    </div>
+  </div>

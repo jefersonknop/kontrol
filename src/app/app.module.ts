@@ -119,6 +119,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ProdutoMarcaCrudComponent } from './modulo-operacional/view/produtoMarca/produto-marca-crud/produto-marca-crud.component';
 import { ProdutoMarcaService } from './modulo-operacional/service/produtoMarca-service';
 import { AdmModuloCrudComponent } from './modulo-administrativo/view/adm-modulo-crud/adm-modulo-crud.component';
+import { AdmModuloService } from './modulo-administrativo/service/admModulo-service';
+import { ContadorCrudComponent } from './modulo-operacional/view/contador-crud/contador-crud.component';
 
 @NgModule({
     imports: [
@@ -222,7 +224,8 @@ import { AdmModuloCrudComponent } from './modulo-administrativo/view/adm-modulo-
         AutofocusDirective,
         CidadeListComponent,
         ProdutoMarcaCrudComponent,
-        AdmModuloCrudComponent
+        AdmModuloCrudComponent,
+        ContadorCrudComponent
     ],
     entryComponents: [       
         CidadeListComponent    
@@ -233,8 +236,11 @@ import { AdmModuloCrudComponent } from './modulo-administrativo/view/adm-modulo-
         CarService, CountryService, EventService, NodeService,
         CidadeService, ConfigService, EstadoService, InquilinoService,
         FabricanteService, UsuarioService, FabricanteService,
+
         Unidade_medidaService,
         ProdutoMarcaService,
+        AdmModuloService,
+        
         AuthGuard,      
         SharedService,
        {

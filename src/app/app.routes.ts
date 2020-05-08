@@ -19,6 +19,7 @@ import { LoginComponent } from './system/view/login/login.component';
 import { AuthGuard } from './system/security/auth.guard';
 import { FabricanteCrudComponent } from './modulo-estoque/view/fabricante/fabricante-crud/fabricante-crud.component';
 import { ProdutoMarcaCrudComponent } from './modulo-operacional/view/produtoMarca/produto-marca-crud/produto-marca-crud.component';
+import { AdmModuloCrudComponent } from './modulo-administrativo/view/adm-modulo-crud/adm-modulo-crud.component';
 
 export const routes: Routes = [
 //    {path: '', component: DashboardDemoComponent},
@@ -43,6 +44,8 @@ export const routes: Routes = [
     {path: 'Unidade_medida', component: UnidadeMedidaCrudComponent,  canActivate: [AuthGuard]}, 
     {path: 'Fabricante', component: FabricanteCrudComponent,  canActivate: [AuthGuard]}, 
 
+     //Administrativo
+     {path: 'AdmModulo', component: AdmModuloCrudComponent,  canActivate: [AuthGuard]}, 
 
     //Operacional
     {path: 'ProdutoMarca', component: ProdutoMarcaCrudComponent,  canActivate: [AuthGuard]}, 

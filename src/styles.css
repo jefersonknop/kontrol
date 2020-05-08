@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+input{
+    text-transform: uppercase;
+}
+/*<input pInputText id="descricao" [(ngModel)]="admModulo.descricao" style="text-transform: lowercase;"/>*/
+
+
