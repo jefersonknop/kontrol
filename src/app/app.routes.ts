@@ -20,6 +20,7 @@ import { AuthGuard } from './system/security/auth.guard';
 import { FabricanteCrudComponent } from './modulo-estoque/view/fabricante/fabricante-crud/fabricante-crud.component';
 import { ProdutoMarcaCrudComponent } from './modulo-operacional/view/produtoMarca/produto-marca-crud/produto-marca-crud.component';
 import { AdmModuloCrudComponent } from './modulo-administrativo/view/adm-modulo-crud/adm-modulo-crud.component';
+import { ContadorCrudComponent } from './modulo-operacional/view/contador-crud/contador-crud.component';
 
 export const routes: Routes = [
 //    {path: '', component: DashboardDemoComponent},
@@ -49,6 +50,7 @@ export const routes: Routes = [
 
     //Operacional
     {path: 'ProdutoMarca', component: ProdutoMarcaCrudComponent,  canActivate: [AuthGuard]}, 
+    {path: 'Contador', component: ContadorCrudComponent,  canActivate: [AuthGuard]}, 
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'});

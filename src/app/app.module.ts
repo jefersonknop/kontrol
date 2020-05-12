@@ -121,6 +121,7 @@ import { ProdutoMarcaService } from './modulo-operacional/service/produtoMarca-s
 import { AdmModuloCrudComponent } from './modulo-administrativo/view/adm-modulo-crud/adm-modulo-crud.component';
 import { AdmModuloService } from './modulo-administrativo/service/admModulo-service';
 import { ContadorCrudComponent } from './modulo-operacional/view/contador-crud/contador-crud.component';
+import { ContadorService } from './modulo-operacional/service/contador-service';
 
 @NgModule({
     imports: [
@@ -240,7 +241,8 @@ import { ContadorCrudComponent } from './modulo-operacional/view/contador-crud/c
         Unidade_medidaService,
         ProdutoMarcaService,
         AdmModuloService,
-        
+        ContadorService,
+
         AuthGuard,      
         SharedService,
        {

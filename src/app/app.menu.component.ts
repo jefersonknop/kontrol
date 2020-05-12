@@ -38,8 +38,8 @@ export class AppMenuComponent implements OnInit {
                 label: 'Operacional', icon: 'fa fa-fw fa-home',
                 items: [
                    
-                    {label: 'Produto: marcas', icon: 'fa fa-fw fa-columns', routerLink: ['/ProdutoMarca']}//,   
-                  //  {label: 'Fabricantes', icon: 'fa fa-fw fa-columns', routerLink: ['/Fabricante']},  
+                    {label: 'Produto: marcas', icon: 'fa fa-fw fa-columns', routerLink: ['/ProdutoMarca']},   
+                    {label: 'Contador', icon: 'fa fa-fw fa-columns', routerLink: ['/Contador']}  
 
                            
                 ]
