@@ -1,3 +1,190 @@
-<p>
-  contador-crud works!
-</p>
+
+
+
+
+<div class="ui-g">
+
+
+  <!----------------------------------------TABELA---------------------------------------->
+    <div class="ui-g-12">
+        <div class="card">    
+            <h1>Contadores</h1>
+        
+                  
+                      <p-table #dt [columns]="cols" [value]="contadores" selectionMode="single" [(selection)]="selectedContador" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="15">
+                          <ng-template pTemplate="caption">
+                            
+                              <div style="text-align: right">        
+                                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                                  <input type="text" pInputText size="50" placeholder="Pesquisa" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                              </div>
+                          </ng-template>
+                          <ng-template pTemplate="header" let-columns>
+                              <tr>
+                                  <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                      {{col.header}}
+                                      <p-sortIcon [field]="col.field"></p-sortIcon>
+                                  </th>
+                              </tr>
+                          </ng-template>
+
+
+                           <!----------------------------------------Coluna personalizadas---------------------------------------->
+                          <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr [pSelectableRow]="rowData">
+                                <td>
+                                    {{rowData["nome"]}}
+                                </td>
+                                <td>
+                                    {{rowData["logradouro"]}},{{rowData["numero]}} - {{rowData["bairro]}}
+                                </td>
+                                <td>
+                                    {{rowData["cidade"]}}/{{rowData["uf"]}}
+                                </td>
+                                <td>
+                                   {{rowData["fone"]}}
+                              </td>
+                              <td>
+                                  {{rowData["email"]}}
+                            </td>
+                            </tr>
+                        </ng-template>
+                          <!-------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+                          <ng-template pTemplate="summary" let-rowData>
+                              <div style="text-align:left">
+                                  <button type="button" pButton icon="fa fa-plus" (click)="showDialogToAdd()" label="Novo"></button>
+                              </div>
+                          </ng-template>    
+                      </p-table>
+  
+  <!----------------------------------------FIM TABELA---------------------------------------->
+                   
+                      <p-dialog header="Contador" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" >
+                         
+                            
+                          <p-tabView>               
+                              <div class="ui-g ui-fluid" *ngIf="contador">                 
+                                  <p-tabPanel header="Dados Cadastrais" leftIcon="pi pi-calendar">
+                                      <div class="ui-g-12">
+                                          <div class="ui-g-4">
+                                              <label for="tipo">Natureza</label>                        
+                                              <p-dropdown [options]="pessoas" [(ngModel)]="fabricante.tipo" placeholder="Escolha uma opção" ></p-dropdown>
+                                          </div>      
+                                          <div class="ui-g-8">
+                                              <label *ngIf="fabricante.tipo === 'Pessoa Jurídica'" for="nome" style="font-weight: bold">Razão Social</label>
+                                              <label *ngIf="fabricante.tipo === 'Pessoa Física'" for="nome" style="font-weight: bold" >Nome</label>
+                                              <input pInputText id="nome" [(ngModel)]="fabricante.nome" ng-required="true" style="font-weight: bold"/>
+                                          </div>                                        
+                                         
+                                      </div>
+                                      <div class="ui-g-12">           
+                                          <div *ngIf="fabricante.tipo === 'Pessoa Jurídica'" class="ui-g-6">
+                                              <label for="nome_fantasia">Nome Fantasia</label>
+                                              <input pInputText id="nome_fantasia" [(ngModel)]="fabricante.nome_fantasia"/>
+                                          </div>                              
+                                                     
+                                          <div *ngIf="fabricante.tipo === 'Pessoa Jurídica'" class="ui-g-3">
+                                              <label for="cpf_cnpj">CNPJ</label>                                         
+                                              <p-inputMask  id="cpf_cnpj" mask="99.999.999/9999-99"  [(ngModel)]="fabricante.cpf_cnpj"></p-inputMask>
+  
+                                          </div>
+                                          <div *ngIf="fabricante.tipo === 'Pessoa Física'" class="ui-g-3">
+                                              <label for="cpf_cnpj">CPF</label>                                         
+                                              <p-inputMask  id="cpf_cnpj" mask="999.999.999-99"  [(ngModel)]="fabricante.cpf_cnpj"></p-inputMask>
+  
+                                          </div>
+                                          <div class="ui-g-3">
+                                              <label *ngIf="fabricante.tipo === 'Pessoa Jurídica'" for="rg_inscricao">Inscrição Municipal</label>
+                                              <label *ngIf="fabricante.tipo === 'Pessoa Física'" for="rg_inscricao">RG</label>
+                                              <input pInputText id="rg_inscricao" [(ngModel)]="fabricante.rg_inscricao" />
+                                          </div>
+                                      </div>  
+                                      <hr>
+                                     
+                                      <div class="ui-g-12">
+                                          <div class="ui-g-11">
+                                              <label for="endereco">Endereço</label>
+                                              <input pInputText id="endereco" [(ngModel)]="fabricante.endereco" />
+                                          </div>                                        
+                                          <div class="ui-g-1">
+                                              <label for="numero">Número</label>
+                                              <input pInputText id="numero" [(ngModel)]="fabricante.numero" />
+                                          </div>                         
+                                      </div>   
+                                      <div class="ui-g-12">
+                                          <div class="ui-g-5">
+                                              <label for="cidade" style="color: blue">Cidade</label>                                        
+                                              <input pInputText  style="background-color:#E8E8E8" readonly="true"  id="cidade" [(ngModel)]="fabricante.cidade" />   
+                                          </div>     
+                                          <div class="ui-g-1">
+                                              <label for="estado" style="color: blue">Estado</label> 
+                                              <input pInputText  style="background-color:#E8E8E8" readonly="true"  id="uf" [(ngModel)]="fabricante.uf" />     
+                                          </div>     
+                                          <div class="ui-g-1">
+                                              <label style="color: white">.</label><br>
+                                              <button type="button" (click)="showCidadeList()" pButton icon="pi pi-search"></button>
+                                          </div>                                     
+                                            
+                                          <div class="ui-g-3">
+                                              <label for="bairro">Bairro</label>
+                                              <input pInputText id="bairro" [(ngModel)]="fabricante.bairro" />
+                                          </div>        
+                                          <div class="ui-g-2">
+                                              <label for="cep">CEP</label>
+                                              <input pInputText id="cep" [(ngModel)]="fabricante.cep"/>
+                                          </div>                        
+                                      </div>   
+                                    
+                                       
+                                     <hr>
+                                      <div class="ui-g-12">
+                                          <div class="ui-g-3">
+                                              <label for="Telefone">Telefone</label>
+                                              <input pInputText id="telefone" [(ngModel)]="fabricante.telefone" />
+                                          </div>                                        
+                                          <div class="ui-g-5">
+                                              <label for="email">Email de contato</label>
+                                              <input pInputText id="email" [(ngModel)]="fabricante.email" />
+                                          </div>
+                                          <div class="ui-g-4">
+                                              <label for="site">Site</label>
+                                              <input pInputText id="site" [(ngModel)]="fabricante.site" />
+                                          </div>
+                                      </div>   
+                                   
+                                      
+                                  </p-tabPanel>                                      
+                                    <p-tabPanel  header="Informações"  leftIcon="pi pi-inbox" class="ui-g-12">
+                                          <div class="ui-g-12">                                       
+                                              <textarea pInputTextarea  id="informacoes" [(ngModel)]="fabricante.informacoes"></textarea>                                        
+                                          
+                                          </div>                                    
+                                  </p-tabPanel>       
+                                
+                                  
+                             </div>                 
+                          </p-tabView>
+  
+  
+  
+  
+                          
+                                
+              
+                          <p-footer>
+                              <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                                  <button type="button" pButton icon="fa fa-close" (click)="delete()" label="Excluir"></button>
+                                  <button type="button" pButton icon="fa fa-check" (click)="save()" label="Salvar"></button>
+                              </div>
+                          </p-footer>
+                      </p-dialog>      
+                 
+           
+        </div>
+    </div>
+  </div>

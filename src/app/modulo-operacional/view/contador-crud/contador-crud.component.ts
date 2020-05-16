@@ -5,6 +5,7 @@ import { Contador } from '../../domain/contador';
 import { Cidade } from 'src/app/system/domain/cidade';
 import { ContadorService } from '../../service/contador-service';
 import { CidadeService } from 'src/app/system/service/cidade-service';
+import { CidadeListComponent } from 'src/app/system/view/cidade/cidade-list/cidade-list.component';
 
 @Component({
   selector: 'app-contador-crud',
@@ -36,59 +37,25 @@ export class ContadorCrudComponent implements OnInit {
 
 
   constructor(private contadorService: ContadorService, private cidadeService: CidadeService, public dialogService: DialogService) {
-    this.pessoas = [
-      {label: 'Pessoa Jurídica', value: 'Pessoa Jurídica'},
-      {label: 'Pessoa Física', value: 'Pessoa Física'}
 
-    ];
-
-/*
-    this.estados = [
-      {label: 'Acre', value: 'AC'},
-      {label: 'Alagoas', value: 'AL'},
-      {label: 'Amapá', value: 'AP'},
-      {label: 'Amazonas', value: 'AM'},
-      {label: 'Bahia', value: 'BA'},
-      {label: 'Ceará', value: 'CE'},
-      {label: 'Distrito Federal', value: 'DF'},
-      {label: 'Espírito Santo', value: 'ES'},
-      {label: 'Goiás', value: 'GO'},
-      {label: 'Maranhão', value: 'MA'},
-      {label: 'Mato Grosso', value: 'MG'},
-      {label: 'Mato Grosso do Sul', value: 'MS'},
-      {label: 'Minas Gerais', value: 'MG'},
-      {label: 'Pará', value: 'PA'},
-      {label: 'Paraíba', value: 'PB'},
-      {label: 'Paraná', value: 'PR'},
-      {label: 'Pernambuco', value: 'PE'},
-      {label: 'Piauí', value: 'PI'},
-      {label: 'Rio de Janeiro', value: 'RJ'},
-      {label: 'Rio Grande do Norte', value: 'RN'},
-      {label: 'Rio Grande do Sul', value: 'RS'},
-      {label: 'Rondônia', value: 'RO'},
-      {label: 'Roraima', value: 'RR'},
-      {label: 'Santa Catarina', value: 'SC'},
-      {label: 'São Paulo', value: 'SP'},
-      {label: 'Sergipe', value: 'SE'},
-      {label: 'Tocantins', value: 'TO'}
-    ];*/
    }
 
   ngOnInit() {
     this.contadorService.list().subscribe(contadores => this.contadores = contadores);
-
-    
   
-
 
     this.cols = [
       { field: 'nome', header: 'Nome' },
-      { field: 'endereco', header: 'Endereço' },
-      { field: 'cidade', header: 'Cidade' } ,   
-      { field: 'telefone', header: 'Telefone' },
+      { field: 'logradouro', header: 'Endereço' },
+      { field: 'numero', header: 'Numero' },
+      { field: 'bairro', header: 'Bairro' },
+      { field: 'cidade', header: 'Cidade/' } ,   
+      { field: 'uf', header: 'UF' } ,   
+      { field: 'fone', header: 'Telefone' },
       { field: 'email', header: 'Email' }
     ];
   }
+
 
   showDialogToAdd() {
     this.newContador = true;  
@@ -101,26 +68,16 @@ export class ContadorCrudComponent implements OnInit {
 
   save() {
     if (this.contador.nome==""){
-      if (this.contador.tipo === "Pessoa Jurídica"){
-        alert("Informar Razão Social");
-      }
-      else{
-        alert("Informar nome");
-      }      
+   
+      alert("Informar nome");
+         
       return;
     }
-    //else if (this.linha.tipo==""){
-      //alert("Informar tipo da linha");
-     // return;      
-   // } 
-   
-
-
-
-    let contadors = [...this.contadors];
+ 
+    let contadores = [...this.contadores];
     if (this.newContador){
-      contadors.push(this.contador);
-       /*CHAMA O SERVIÇO PARA ADICIONAR UMA NOVA Contador */     
+      contadores.push(this.contador);
+       /*CHAMA O SERVIÇO PARA ADICIONAR UMA NOVO Contador */     
        this.contadorService.createOrUpdate(this.contador).subscribe(response => {
 
         let res: Response = <Response>response;
@@ -143,7 +100,7 @@ export class ContadorCrudComponent implements OnInit {
 
     }
     else{
-      contadors[this.contadors.indexOf(this.selectedContador)] = this.contador;
+      contadores[this.contadores.indexOf(this.selectedContador)] = this.contador;
       this.contadorService.createOrUpdate(this.contador).subscribe(response => {
         let res: Response = <Response>response;
 
@@ -162,21 +119,21 @@ export class ContadorCrudComponent implements OnInit {
       
        
     }
-    this.contadors = contadors;
+    this.contadores = contadores;
     this.contador = null;
     this.displayDialog = false;
 
   }
 
   delete() {
-    let index = this.contadors.indexOf(this.selectedContador);  
+    let index = this.contadores.indexOf(this.selectedContador);  
     
     if(confirm("Deseja realmente excluir esse registro?")){
       this.contadorService.delete(this.selectedContador.id).subscribe(response => {
             let res:Response = <Response>response;
             if(res.codigo == 1){
               alert(res.mensagem);
-              this.contadors.splice(index,1);
+              this.contadores.splice(index,1);
             }
             else{             
               alert(res.mensagem);
@@ -186,7 +143,7 @@ export class ContadorCrudComponent implements OnInit {
              alert(erro);
         });        
     }
-    this.contadors = this.contadors.filter((val, i) => i != index);
+    this.contadores = this.contadores.filter((val, i) => i != index);
     this.contador = null;
     this.displayDialog = false;
   }
@@ -209,30 +166,6 @@ export class ContadorCrudComponent implements OnInit {
     return contador;
   }
 
-
- 
-
-
-
-    onTabChange(event) {
-       // this.messageService.add({severity:'info', summary:'Tab Expanded', detail: 'Index: ' + event.index});
-    }
-
-
-
-
-
-   /* getCidades(estado: string) {           
-      this.cidadeService.listBySiglaEstado(estado).subscribe(cidades => this.cidades = cidades);
-      this.cidades.forEach((cidade) => { // foreach statement       
-        this.cidadesItens.push({
-          'value': cidade.nome,
-          'label' :  cidade.nome
-        });
-       });
-  
-    }
-   */
 
 
   showCidadeList() {
