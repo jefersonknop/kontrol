@@ -72,13 +72,23 @@
                                   <p-tabPanel header="Dados Cadastrais" leftIcon="pi pi-calendar">
                                       <div class="ui-g-12">
                                           <div class="ui-g-4">
-                                              <label for="tipo">Natureza</label>                        
-                                              <p-dropdown [options]="pessoas" [(ngModel)]="fabricante.tipo" placeholder="Escolha uma opção" ></p-dropdown>
+                                              <label for="tipo">Natureza</label>     
+                                              <div *ngIf="contator.cpf === ''" class="ui-g-6"></div>                   
+                                                 <p-dropdown [options]="pessoas" [(ngModel)]="PESSOA FÍSICA" placeholder="Escolha uma opção" ></p-dropdown>
+                                                 <div *ngIf="contator.cnpj === ''" class="ui-g-6"></div>                   
+                                                 <p-dropdown [options]="pessoas" [(ngModel)]="PESSOA JURÍDICA" placeholder="Escolha uma opção" ></p-dropdown>
                                           </div>      
                                           <div class="ui-g-8">
-                                              <label *ngIf="fabricante.tipo === 'Pessoa Jurídica'" for="nome" style="font-weight: bold">Razão Social</label>
-                                              <label *ngIf="fabricante.tipo === 'Pessoa Física'" for="nome" style="font-weight: bold" >Nome</label>
-                                              <input pInputText id="nome" [(ngModel)]="fabricante.nome" ng-required="true" style="font-weight: bold"/>
+                                              <div *ngIf="contator.cpf === '''" class="ui-g-3">
+                                                <label for="cpf_cnpj">CNPJ</label>                                         
+                                                <p-inputMask  id="cpf_cnpj" mask="99.999.999/9999-99"  [(ngModel)]="fabricante.cpf_cnpj"></p-inputMask>
+    
+                                            </div>
+                                            <div *ngIf="fabricante.tipo === 'Pessoa Física'" class="ui-g-3">
+                                                <label for="cpf_cnpj">CPF</label>                                         
+                                                <p-inputMask  id="cpf_cnpj" mask="999.999.999-99"  [(ngModel)]="fabricante.cpf_cnpj"></p-inputMask>
+    
+                                            </div>
                                           </div>                                        
                                          
                                       </div>

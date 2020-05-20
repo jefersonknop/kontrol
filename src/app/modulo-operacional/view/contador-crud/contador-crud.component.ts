@@ -19,6 +19,7 @@ export class ContadorCrudComponent implements OnInit {
   selectedContador: Contador;
   newContador: boolean;
   contadores: Contador[];
+ 
 
 
   cidade: Cidade; 
@@ -37,6 +38,11 @@ export class ContadorCrudComponent implements OnInit {
 
 
   constructor(private contadorService: ContadorService, private cidadeService: CidadeService, public dialogService: DialogService) {
+    this.pessoas = [
+      {label: 'Pessoa Jurídica', value: 'Pessoa Jurídica'},
+      {label: 'Pessoa Física', value: 'Pessoa Física'}
+
+    ];
 
    }
 
@@ -60,7 +66,7 @@ export class ContadorCrudComponent implements OnInit {
   showDialogToAdd() {
     this.newContador = true;  
     this.contador = new Contador();
-
+    this.tipo = 'PESSOA FÍSICA'
 
     this.displayDialog = true;
 
